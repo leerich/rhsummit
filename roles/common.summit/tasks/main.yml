@@ -36,3 +36,6 @@
   shell: echo "$FACTERLIB"
   environment:
     FACTERLIB: "/etc/puppet/modules/myfacts/lib/facter"
+
+- name: Regather facts
+  setup:

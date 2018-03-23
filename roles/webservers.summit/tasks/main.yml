@@ -1,5 +1,4 @@
 ---
-# tasks file for webservers.summit
 - name: install httpd
   package:
     name: httpd
@@ -8,4 +7,4 @@
 - name: Start httpd
   service:
     name: httpd
-    state: started 
+    state: started
