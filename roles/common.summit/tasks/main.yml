@@ -1,0 +1,38 @@
+---
+- name: Install puppet
+  package:
+    name: puppet
+    state: present
+
+- name: Start Puppet
+  service:
+    name: puppet
+    state: started
+
+- name: Create Directory
+  file:
+    path: /etc/puppet/modules/myfacts/manifests/
+    state: directory
+
+- name: Create facter dirs
+  file:
+    path: /etc/puppet/modules/myfacts/lib/facter
+    state: directory
+
+- name: Create manifest
+  template:
+    src: templates/init.pp.j2
+    dest: /etc/puppet/modules/myfacts/manifests/init.pp
+
+- name: Facter fact
+  template:
+    src: templates/location.rb.j2
+    dest: /etc/puppet/modules/myfacts/lib/facter/location.rb
+
+- name: Puppet apply
+  shell: puppet apply /etc/puppet/modules/myfacts/manifests/init.pp
+
+- name: Set env for facter
+  shell: echo "$FACTERLIB"
+  environment:
+    FACTERLIB: "/etc/puppet/modules/myfacts/lib/facter"

@@ -1,0 +1,9 @@
+---
+- name: Main playbook for summit
+  hosts: all
+  user: ec2-user
+  become: true
+  roles:
+      - { role: "common.summit" }
+      - { role: webservers.summit, when: facter_hostname == "ip-172-31-13-236"}
+      - { role: databases.summit, when: facter_hostname == "ip-172-31-9-65"}

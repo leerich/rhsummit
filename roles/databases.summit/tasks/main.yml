@@ -1,2 +1,11 @@
 ---
 # tasks file for databases.summit
+- name: Install Mariadb
+  package:
+    name: mariadb-server 
+    state: present
+
+- name: Start mariadb
+  service:
+    name: mariadb
+    state: started
