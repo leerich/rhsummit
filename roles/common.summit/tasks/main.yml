@@ -39,3 +39,14 @@
 
 - name: Regather facts
   setup:
+
+- name: "Create custom fact directory"
+  file:
+    path: "/etc/ansible/facts.d"
+    state: "directory"
+
+- name: "Insert custom fact file"
+  copy:
+    src: files/purpose.sh.fact
+    dest: /etc/ansible/facts.d/purpose.sh.fact
+    mode: 0755

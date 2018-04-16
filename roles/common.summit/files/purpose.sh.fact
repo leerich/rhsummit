@@ -1,0 +1,11 @@
+#!/bin/bash
+if [ -e /etc/webserver ]
+then
+    purpose=webserver
+elif [-e /etc/database]
+then
+    purpose=database
+
+else
+  purpose=unknown
+fi
