@@ -1,11 +1,12 @@
 #!/bin/bash
 if [ -e /etc/webserver ]
 then
-    purpose=webserver
+    echo "{\"role\" : \"webserver\"}"
+
 elif [-e /etc/database]
 then
-    purpose=database
+    echo "{\"role\" : \"database\"}"
 
 else
-  purpose=unknown
+  echo "{\"role\" : \"unknown\"}"
 fi
