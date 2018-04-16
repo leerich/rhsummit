@@ -1,0 +1,22 @@
+---
+- hosts: all
+  vars:
+    users:
+      - jalonso
+      - antonio
+      - ipurdy
+      - afeiszli
+      - ccrudgington
+      - sclatter 
+
+  tasks:
+
+  - name: create linux users
+    user:
+      name: '{{ item }}'
+      state: absent
+      generate_ssh_key: yes
+      ssh_key_bits: 2048
+      ssh_key_file: .ssh/id_rsa
+      password: $6$AC5gd.hv$wiro2n0FAsxh8252jISYUr6SVhQADTIDigUSFhbn4P64mkwsw3ztpTb0/HQH0tTsFzwDvj9bFm75Lw8ZD3NPc/
+    with_items: '{{ users }}'
