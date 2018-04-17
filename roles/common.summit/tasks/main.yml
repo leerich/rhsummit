@@ -47,7 +47,7 @@
 
 - name: "Insert custom fact file"
   copy:
-    src: files/purpose.sh.fact
+    src: files/purpose.fact
     dest: /etc/ansible/facts.d/purpose.fact
     mode: 0755
 
