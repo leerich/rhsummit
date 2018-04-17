@@ -50,3 +50,6 @@
     src: files/purpose.sh.fact
     dest: /etc/ansible/facts.d/purpose.fact
     mode: 0755
+
+- name: Regather facts
+  setup:
