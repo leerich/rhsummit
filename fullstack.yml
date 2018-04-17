@@ -1,9 +1,9 @@
 ---
-- hosts: localhost
-  connection: local
+- hosts: ip-172-31-5-149.eu-central-1.compute.internal
+#  connection: local
   gather_facts: False
   user: ec2-user
-  become: true
+#  become: true
   tasks:
 
     - name: Webserver Instances
