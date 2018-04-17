@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
   connection: local
+  gather_facts: False
   tasks:
 
     - name: Webserver Instances
@@ -20,6 +21,7 @@
         vpc_subnet_id: subnet-33b7b74b
         assign_public_ip: yes
         region: 'eu-central-1'
+        state: present
 
     - name: Database Instances
       ec2:
@@ -38,6 +40,7 @@
         vpc_subnet_id: subnet-33b7b74b
         assign_public_ip: yes
         region: 'eu-central-1'
+        state: present
 
     - name: Add all instance public IPs to host group
       add_host: hostname={{ item.private_ip }} groups=ec2hosts
