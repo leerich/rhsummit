@@ -15,7 +15,7 @@
         instance_tags:
           for: summit
           role: webserver
-          Name: webserverbyansible
+          Name: "{{ webname }}"
           tagger: factlookup
         user_data: "{{ lookup('file', 'webserver.sh') }}"
         monitoring: no
@@ -37,7 +37,7 @@
         instance_tags:
           for: summit
           role: database
-          Name: databasebyansible
+          Name: "{{ dbname }}"
           tagger: factlookup
         user_data: "{{ lookup('file', 'database.sh') }}"
         monitoring: no
