@@ -3,7 +3,7 @@ if [ -e /etc/webserver ]
 then
     echo "{\"role\" : \"webserver\"}"
 
-elif [-e /etc/database]
+elif [ -e /etc/database ]
 then
     echo "{\"role\" : \"database\"}"
 
