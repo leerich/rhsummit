@@ -87,7 +87,7 @@
       with_items: "{{ ec2db.instances }}"
 
 - name: Configure instance(s)
-  hosts: launched
+  hosts: ansiblecreated
   user: ec2-user
   become: True
   gather_facts: True
