@@ -57,10 +57,10 @@
         state: started
       with_items: "{{ ec2.instances }}"
 
-    - name: Configure instance(s)
-      hosts: launched
-      user: ec2-user
-      become: True
-      gather_facts: True
-      roles:
-          - { role: "common.summit" }
+- name: Configure instance(s)
+  hosts: launched
+  user: ec2-user
+  become: True
+  gather_facts: True
+  roles:
+      - { role: "common.summit" }
