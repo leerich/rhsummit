@@ -63,4 +63,4 @@
       become: True
       gather_facts: True
       roles:
-        - { role: "common.summit" }
+          - { role: "common.summit" }
