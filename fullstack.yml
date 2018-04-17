@@ -20,6 +20,7 @@
         user_data: "{{ lookup('file', 'webserver.sh') }}"
         monitoring: no
         vpc_subnet_id: subnet-33b7b74b
+        group_id: sg-b2c11adf
         assign_public_ip: yes
         region: 'eu-central-1'
         state: present
@@ -41,6 +42,7 @@
         user_data: "{{ lookup('file', 'database.sh') }}"
         monitoring: no
         vpc_subnet_id: subnet-33b7b74b
+        group_id: sg-b2c11adf
         assign_public_ip: yes
         region: 'eu-central-1'
         state: present
