@@ -1,9 +1,7 @@
 ---
-- hosts: ip-172-31-5-149.eu-central-1.compute.internal
-#  connection: local
+- hosts: localhost
+  connection: local
   gather_facts: False
-  user: ec2-user
-#  become: true
   tasks:
 
     - name: Webserver Instances
@@ -95,3 +93,5 @@
   gather_facts: True
   roles:
       - { role: "common.summit" }
+      - { role: webservers.summit, when: ansible_local.purpose.role == "webserver"}
+      - { role: databases.summit, when: ansible_local.purpose.role == "database"}
