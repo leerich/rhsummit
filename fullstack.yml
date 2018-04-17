@@ -1,0 +1,39 @@
+---
+- hosts: localhost
+  tasks:
+
+    - name: Webserver Instances
+      ec2:
+        key_name: frankfurt
+        instance_type: t2.micro
+        image: ami-194cdc76
+        wait: yes
+        wait_timeout: 500
+        count: 1
+        instance_tags:
+          for: summit
+          role: webserver
+          Name: webserverbyansible
+        user_data: "{{ lookup('file', 'webserver.sh') }}"
+        monitoring: no
+        vpc_subnet_id: subnet-33b7b74b
+        assign_public_ip: yes
+        region: 'eu-central-1'
+
+    - name: Database Instances
+      ec2:
+        key_name: frankfurt
+        instance_type: t2.micro
+        image: ami-194cdc76
+        wait: yes
+        wait_timeout: 500
+        count: 1
+        instance_tags:
+          for: summit
+          role: database
+          Name: databasebyansible
+        user_data: "{{ lookup('file', 'database.sh') }}"
+        monitoring: no
+        vpc_subnet_id: subnet-33b7b74b
+        assign_public_ip: yes
+        region: 'eu-central-1'
