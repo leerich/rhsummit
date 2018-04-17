@@ -7,14 +7,14 @@
       - ipurdy
       - afeiszli
       - ccrudgington
-      - sclatter 
+      - sclatter
 
   tasks:
 
   - name: create linux users
     user:
       name: '{{ item }}'
-      state: absent
+      state: present
       generate_ssh_key: yes
       ssh_key_bits: 2048
       ssh_key_file: .ssh/id_rsa
