@@ -26,6 +26,8 @@
             ansible_group: "{{ item }}"
             Name: "Demo_Linux_{{ item }}"
       register: ec2
+      async: 7200
+      poll: 0
       with_items:
         - "{{ server_roles }}"
 
