@@ -25,11 +25,11 @@
          instance_tags:
             ansible_group: "{{ item }}"
             Name: "Demo_Linux_{{ item }}"
+      with_items:
+        - "{{ server_roles }}"
       register: ec2
       async: 7200
       poll: 0
-      with_items:
-        - "{{ server_roles }}"
 
 #    - name: Add all instances public IPs to host group
 #      add_host: hostname="{{ item.public_ip }}" groupname=dbservers
