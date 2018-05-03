@@ -1,9 +1,11 @@
 ---
 # This playbook deploys the whole application stack in this site.
 
-  
+
 - name: apply common configuration to all nodes
   hosts: all
+  gather_facts: false
+  become: true
   #remote_user: ec2-user
 
   roles:
@@ -21,6 +23,6 @@
   hosts: tag_Name_Demo_Linux_DBserver
   gather_facts: false
   #remote_user: ec2-user
- 
+
   roles:
     - db
