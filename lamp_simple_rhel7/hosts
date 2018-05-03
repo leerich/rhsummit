@@ -1,8 +1,6 @@
-[webservers]
+#[webservers]
 #webserver.local
 
-[dbservers]
-54.208.96.160
+#[dbservers]
+#54.208.96.160
 #dbserver.local
-
-
