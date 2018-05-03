@@ -17,7 +17,7 @@
          region: "{{ ec2_region }}"
          vpc_subnet_id: "{{ ec2_vpc_subnet }}"
          #count: "{{ ec2_instance_count }}"
-         #wait: false
+         wait: false
          assign_public_ip: yes
          exact_count: "{{ ec2_instance_count }}"
          count_tag:
@@ -28,7 +28,7 @@
       with_items:
         - "{{ server_roles }}"
       register: ec2
-      async: 7200
+      #async: 7200
       poll: 0
 
 #    - name: Add all instances public IPs to host group
