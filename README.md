@@ -1,32 +1,32 @@
-Summit Ansible Demo
-=========
+Building a simple LAMP stack and deploying Application using Ansible Playbooks.
+-------------------------------------------
 
-This role is a basic demostration on how to utilize Facter facts in Ansible Playbooks
+These playbooks require Ansible 1.2.
 
-Requirements
-------------
+These playbooks are meant to be a reference and starter's guide to building
+Ansible Playbooks. These playbooks were tested on CentOS 7.x so we recommend
+that you use CentOS or RHEL to test these modules.
 
-None
+RHEL7 version reflects changes in Red Hat Enterprise Linux and CentOS 7:
+1. Network device naming scheme has changed
+2. iptables is replaced with firewalld
+3. MySQL is replaced with MariaDB
 
-Example Playbook
-----------------
+This LAMP stack can be on a single node or multiple nodes. The inventory file
+'hosts' defines the nodes in which the stacks should be configured.
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+        [webservers]
+        localhost
 
-    ---
-    - name: Main playbook for summit
-      hosts: all
-      roles:
-          - { role: "common.summit" }
-          - { role: webservers.summit, when: facter_hostname == "ip-172-31-13-236"}
-          - { role: databases.summit, when: facter_hostname == "ip-172-31-9-65"}
+        [dbservers]
+        bensible
 
-License
--------
+Here the webserver would be configured on the local host and the dbserver on a
+server called "bensible". The stack can be deployed using the following
+command:
 
-BSD
+        ansible-playbook -i hosts site.yml
 
-Author Information
-------------------
-
-Steve Clatterbuck, Crossvale Inc, Lee Rich, Red Hat Inc. 
+Once done, you can check the results by browsing to http://localhost/index.php.
+You should see a simple test page and a list of databases retrieved from the
+database server.
