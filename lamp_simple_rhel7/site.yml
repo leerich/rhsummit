@@ -13,7 +13,7 @@
 
 - name: configure and deploy the webservers and application code
   hosts: tag_Name_Demo_Linux_Webserver
-  gather_facts: false
+  gather_facts: true
   #remote_user: ec2-user
 
   roles:
@@ -21,7 +21,7 @@
 
 - name: deploy MySQL and configure the databases
   hosts: tag_Name_Demo_Linux_DBserver
-  gather_facts: false
+  gather_facts: true
   #remote_user: ec2-user
 
   roles:
