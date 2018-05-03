@@ -6,7 +6,7 @@
 
   tasks:
 
-    - name: Provision a Webserver Instance
+    - name: Create EC2 instances
       ec2:
          #access_key: "{{ ec2_access_key }}"
          #secret_key: "{{ ec2_secret_key }}"
@@ -21,59 +21,13 @@
          assign_public_ip: yes
          exact_count: "{{ ec2_instance_count }}"
          count_tag:
-            Name: Demo_Linux_Webserver
+            Name: "Demo_Linux_{{ item }}"
          instance_tags:
-            ansible_group: webservers
-            Name: Demo_Linux_Webserver
-      tags:
-         - webserver
+            ansible_group: "{{ item }}"
+            Name: "Demo_Linux_{{ item }}"
       register: ec2
-
-    - name: Provision a DBServer Instance
-      ec2:
-         #access_key: "{{ ec2_access_key }}"
-         #secret_key: "{{ ec2_secret_key }}"
-         keypair: "{{ ec2_keypair }}"
-         group_id: "{{ ec2_security_group }}"
-         type: "{{ ec2_instance_type }}"
-         image: "{{ ec2_image }}"
-         region: "{{ ec2_region }}"
-         vpc_subnet_id: "{{ ec2_vpc_subnet }}"
-         #count: "{{ ec2_instance_count }}"
-         wait: false
-         assign_public_ip: yes
-         exact_count: "{{ ec2_instance_count }}"
-         count_tag:
-            Name: Demo_Linux_DBserver
-         instance_tags:
-            ansible_group: dbservers
-            Name: Demo_Linux_DBserver
-      tags:
-         - dbserver
-      register: ec2
-
-    - name: Provision a Jenkins Instance
-      ec2:
-         #access_key: "{{ ec2_access_key }}"
-         #secret_key: "{{ ec2_secret_key }}"
-         keypair: "{{ ec2_keypair }}"
-         group_id: "{{ ec2_security_group }}"
-         type: "{{ ec2_instance_type }}"
-         image: "{{ ec2_image }}"
-         region: "{{ ec2_region }}"
-         vpc_subnet_id: "{{ ec2_vpc_subnet }}"
-         #count: "{{ ec2_instance_count }}"
-         wait: false
-         assign_public_ip: yes
-         exact_count: "{{ ec2_instance_count }}"
-         count_tag:
-            Name: Demo_Linux_Jenkins
-         instance_tags:
-            ansible_group: jenkins
-            Name: Demo_Linux_Jenkins
-      tags:
-         - jenkins
-      register: ec2
+      with_items:
+        - "{{ server_roles }}"
 
 #    - name: Add all instances public IPs to host group
 #      add_host: hostname="{{ item.public_ip }}" groupname=dbservers
